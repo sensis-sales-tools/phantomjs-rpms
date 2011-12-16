@@ -1,0 +1,21 @@
+#! /bin/bash
+
+readonly SQLITEVER=3.6.20-1
+readonly BASEDIR=$(dirname $(readlink -f "$0"))
+
+set -e
+for arch in x86_64 i386; do
+    baseurl="http://dl.atrpms.net/el5-${arch}/atrpms/testing"
+    mkdir -p "${BASEDIR}/RPMS/el/5/${arch}"
+    cd "${BASEDIR}/RPMS/el/5/${arch}"
+
+    for pkg in \
+        "sqlite-${SQLITEVER}.el5.${arch}.rpm" \
+        "sqlite-devel-${SQLITEVER}.el5.${arch}.rpm" \
+        "sqlite-tcl-${SQLITEVER}.el5.${arch}.rpm"; do
+
+        rm -f "${pkg}"
+        wget "${baseurl}/${pkg}"
+    done
+done
+
