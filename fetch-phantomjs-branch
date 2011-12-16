@@ -10,7 +10,7 @@ set -e
 branch="$1"
 tmp=$(mktemp -d)
 basedir=$(dirname $(readlink -f "$0"))
-gitbase=git://github.com/ariya/phantomjs.git
+gitbase=https://github.com/sensis-sales-tools/phantomjs.git
 
 cd "${tmp}"
 git clone -b "${branch}" "${gitbase}"
